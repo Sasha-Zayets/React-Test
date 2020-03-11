@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1f9dce;
+
+  &__logo {
+    font-size: 28px;
+    line-height: 30px;
+    color: white;
+  }
+}
+
+.navigation {
+  &__link {
+    margin-right: 20px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--active {
+      text-decoration: underline;
+    }
+  }
+
+  &__button {
+    border: 1px solid white;
+    color: white;
+    background-color: transparent;
+    padding: 5px;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.main {
+  flex-grow: 2;
+  padding: 10px;
+}
+
+.footer {
+  padding: 10px;
+  background-color: silver;
+  color: white;
+  font-size: 14px;
+}

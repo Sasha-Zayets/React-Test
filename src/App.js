@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import "./App.scss";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "recompose";
+import Router from "./router";
+import authUser from "./components/HOC/AuthUser";
+import { logOutUser } from "./store/actions";
 
-function App() {
+const App = ({ auth, logOut }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Fragment>
+      <header className="header">
+        <div className="header__logo">Logo</div>
+        <nav className="navigation header__navigation">
+          {auth ? (
+            <Fragment>
+              <NavLink
+                to="/"
+                className="navigation__link"
+                activeClassName="navigation__link--active"
+              >
+                Главная
+              </NavLink>
+              <NavLink
+                to="/"
+                className="navigation__link"
+                activeClassName="navigation__link--active"
+              >
+                Новости
+              </NavLink>
+              <button to="/" className="navigation__button" onClick={() => logOut()}>
+                Выход
+              </button>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <button to="/" className="navigation__button">
+                Вход
+              </button>
+            </Fragment>
+          )}
+        </nav>
       </header>
-    </div>
+      <main className="main">
+        <Router></Router>
+      </main>
+      <footer className="footer">@2020</footer>
+    </Fragment>
   );
-}
+};
 
-export default App;
+const mapDispathToProps = dispatch => ({
+  logOut: () => dispatch(logOutUser())
+});
+
+export default compose(connect(null, mapDispathToProps), authUser)(App);
