@@ -23,7 +23,7 @@ const App = ({ auth, logOut }) => {
                 Главная
               </NavLink>
               <NavLink
-                to="/"
+                to="/news"
                 className="navigation__link"
                 activeClassName="navigation__link--active"
               >
